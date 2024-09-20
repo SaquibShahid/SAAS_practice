@@ -21,11 +21,24 @@ function generateModelFile(modelName, schemaFields) {
         module.exports = ${modelName};
     `;
     const connectionContent = `
-        const clientModel = require('./masterDB/client.db.js')
-        const client = await clientModel.findOne({clientName : "${modelName}"});
+    const clientModel = require('../masterDB/client.db')
 
-        const conn = mongoose.createConnection(client.databaseURI);
-        module.exports = conn;
+    async function getClientDbConnection(clientId) {
+        const client = await clientModel.findById({ clientName: clientId });
+
+        if (!client) {
+                throw new Error('Client not found');
+        }
+
+        const clientDbConnection = mongoose.createConnection(client.databaseURI);
+
+        return clientDbConnection;
+    }   
+
+    getClientDbConnection('${modelName}').then((conn) => {
+            console.log("Connected to client")
+            return conn;
+    });
     `;
 
     if (!fs.existsSync(path.join(__dirname, `models/${modelName}`))) {
@@ -49,4 +62,4 @@ const userSchemaFields = {
     createAt: { type: "Date", default: "Date.now()" },
 };
 
-generateModelFile('userEdepto', userSchemaFields);
+generateModelFile('newsFlick', userSchemaFields);

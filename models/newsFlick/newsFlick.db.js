@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const conn = require('./conn');
 
-const userEdeptoSchema = new Schema({
+const newsFlickSchema = new Schema({
     name: {
         required: true,
         type: String
@@ -21,6 +21,6 @@ const userEdeptoSchema = new Schema({
     }
 });
 
-const userEdepto = conn.model('userEdepto', userEdeptoSchema);
+const newsFlick = conn.model('newsFlick', newsFlickSchema);
 
-module.exports = userEdepto;
+module.exports = newsFlick;

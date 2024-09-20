@@ -21,14 +21,10 @@ app.get('/create-client', async (req, res) => {
     return res.send(`Database created for client: ${clientName} at URI: ${databaseURI}`);
 })
 
-
-
-
 app.get('/users', async (req, res) => {
     const users = await require(`./models/${req.query.app}/${req.query.app}.db`).find().select({ __v: 0 });
     res.json(users);
 })
-
 
 app.listen(5001, () => {
     console.log("Server listening on port 5001")
