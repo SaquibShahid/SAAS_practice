@@ -1,6 +1,8 @@
 
 const clientModel = require('../masterDB/client.db')
 
+let conn = null;
+
 async function getClientDbConnection(clientId) {
         const client = await clientModel.findById({ clientName: clientId });
 
@@ -10,10 +12,11 @@ async function getClientDbConnection(clientId) {
 
         const clientDbConnection = mongoose.createConnection(client.databaseURI);
 
-        return clientDbConnection;
+        conn = clientDbConnection;
 }
 
 getClientDbConnection('newsFlick').then((conn) => {
-        console.log("Connected to client")
-        return conn;
+        return this.conn;
 });
+
+module.exports = getClientDbConnection;

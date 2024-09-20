@@ -1,7 +1,8 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const conn = require('./conn');
+let connections = require('../../app');
+
 
 const userEdeptoSchema = new Schema({
     name: {
@@ -21,6 +22,6 @@ const userEdeptoSchema = new Schema({
     }
 });
 
-const userEdepto = conn.model('userEdepto', userEdeptoSchema);
+const userEdepto = connections['userEdepto'].model('userEdepto', userEdeptoSchema);
 
 module.exports = userEdepto;

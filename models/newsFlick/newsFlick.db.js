@@ -1,7 +1,7 @@
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const conn = require('./conn');
+let connections = require('../../app');
+
 
 const newsFlickSchema = new Schema({
     name: {
@@ -21,6 +21,6 @@ const newsFlickSchema = new Schema({
     }
 });
 
-const newsFlick = conn.model('newsFlick', newsFlickSchema);
+const newsFlick = connections['newsFlick'].model('newsFlick', newsFlickSchema);
 
 module.exports = newsFlick;
