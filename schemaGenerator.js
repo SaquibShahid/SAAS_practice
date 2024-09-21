@@ -40,4 +40,4 @@ const userSchemaFields = {
     createAt: { type: "Date", default: "Date.now()" },
 };
 
-generateModelFile('UniBit', userSchemaFields);
+generateModelFile('app', userSchemaFields);
