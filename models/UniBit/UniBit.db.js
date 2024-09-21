@@ -1,8 +1,9 @@
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let connections = require('../../app');
 
-const newsFlickSchema = new Schema({
+const UniBitSchema = new Schema({
     name: {
         required: true,
         type: String
@@ -20,6 +21,6 @@ const newsFlickSchema = new Schema({
     }
 });
 
-const newsFlick = connections['newsFlick'].model('newsFlick', newsFlickSchema);
+const UniBit = connections['UniBit'].model('UniBit', UniBitSchema);
 
-module.exports = newsFlick;
+module.exports = UniBit;
